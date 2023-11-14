@@ -38,12 +38,6 @@ sudo dnf install ncurses-devel
 
 ## Como executar
 
-Este **.zip** contém os seguintes arquivos:
- - game.c
- - logic.c/.h
- - menu.c/.h
- - makefile
-
 Para rodar o jogo, deve-se executar as instruções :
 ```sh
 make all # Compilar arquivos e gerar executável
