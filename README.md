@@ -108,7 +108,7 @@ pthread_mutex_unlock(&mutex);
 
 Dessa forma, condições de corrida, antes presentes e que poderiam ocasionar glitches de interface, são mitigadas pelo uso dos semáforos. 
 
-Assista ao vídeo abaixo para visualizar como tais glitches aparentam e como são evitados.
+Assista ao vídeo abaixo para visualizar como se apresentam os possíveis glitches e como são evitados.
 
 ## Vídeo de apresentação
 
