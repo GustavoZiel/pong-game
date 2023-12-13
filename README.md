@@ -1,6 +1,9 @@
 # [Pong Game](hhttps://github.com/GustavoZiel)
 Desenvolvido por:
 - Gustavo Gabriel Ribeiro - 13672683
+- Artur De Vlieger Lima - 13671574
+- João Pedro Soares de Azevedo Calixto - 13732011
+- Lucas de Souza Brandão - 13695021
 
 ## Como instalar
 
