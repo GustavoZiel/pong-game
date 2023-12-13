@@ -83,10 +83,10 @@ A razão para essa abordagem é que as operações envolvendo as raquetes e a bo
 
 Código desenvolvido em **logic.c**:
 ```c
-233: pthread_t p, q, r;
-234: pthread_create(&p, NULL, move_raquete_wrapper, (void *)(setup->jogadores[0]));
-235: pthread_create(&q, NULL, move_raquete_wrapper, (void *)(setup->jogadores[1]));
-236: pthread_create(&r, NULL, move_ball_wrapper, (void *)(setup));
+pthread_t p, q, r;
+pthread_create(&p, NULL, move_raquete_wrapper, (void *)(setup->jogadores[0]));
+pthread_create(&q, NULL, move_raquete_wrapper, (void *)(setup->jogadores[1]));
+pthread_create(&r, NULL, move_ball_wrapper, (void *)(setup));
 ```
 ### Semáforos
 
