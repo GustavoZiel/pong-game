@@ -9,7 +9,6 @@
 #include "menu.h"
 
 pthread_mutex_t mutex;
-pthread_cond_t cond;
 int game_on;
 int player_won;
 int key;
@@ -142,9 +141,7 @@ void erase_raquete(WIN *win, RAQUETE *raq) {
     for (int i = 0; i < raq->tam; i++) {
         mvwaddch(win->win_obj, raq->pos.y + i, raq->pos.x, ' ');
     }
-    pthread_mutex_lock(&mutex);
-    wrefresh(win->win_obj);
-    pthread_mutex_unlock(&mutex);
+    atualizar_tela(win->win_obj,flag_mutex);
 }
 void *move_raquete_wrapper(void *args) {
     JOGADOR *jogador = (JOGADOR *)args;
@@ -297,7 +294,6 @@ int create_game() {
     player_won = -1;
     key = -1;
     pthread_mutex_init(&mutex, NULL);
-    pthread_cond_init(&cond, NULL);
 
     SETUP *setup;
     setup = create_setup();
