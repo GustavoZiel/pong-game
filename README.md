@@ -112,7 +112,7 @@ Assista ao vídeo abaixo para visualizar como se apresentam os possíveis glitch
 
 ## Vídeo de apresentação
 
-<!-- Link aqui -->
+https://drive.google.com/file/d/1YN7HlkowLsuxFQAXJqA2Nh64CA3YqfjQ/view?usp=sharing
 
 ## Imagens do jogo
 
