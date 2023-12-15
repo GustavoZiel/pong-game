@@ -1,4 +1,4 @@
-# [Pong Game](hhttps://github.com/GustavoZiel)
+# [Pong Game](https://github.com/GustavoZiel)
 Desenvolvido por:
 - Gustavo Gabriel Ribeiro - 13672683
 - Artur De Vlieger Lima - 13671574
