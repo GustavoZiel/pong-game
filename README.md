@@ -1,13 +1,15 @@
 # [Pong Game](https://github.com/GustavoZiel/Pong-Game)
-Desenvolvido por:
+
+Developed by:
+
 - Gustavo Gabriel Ribeiro - 13672683
 - Artur De Vlieger Lima - 13671574
 - João Pedro Soares de Azevedo Calixto - 13732011
 - Lucas de Souza Brandão - 13695021
 
-## Como instalar
+## How to Install
 
-O jogo foi totalmente desenvolvido em C, sem o advento de qualquer recurso referente a outra linguagem, ele utiliza das sequintes bibliotecas:
+The game was entirely developed in C, without using any resources from other languages. It uses the following libraries:
 
 ```c
 #include <stdio.h>
@@ -19,86 +21,90 @@ O jogo foi totalmente desenvolvido em C, sem o advento de qualquer recurso refer
 #include <ncurses.h>
 ```
 
-Cujas as quais, exceto pela biblioteca **ncurses**, estão todas já incluídas em C nativo.
+All of these libraries, except for **ncurses**, are already included in native C.
 
-A biblioteca **ncurses** foi utilizada para o desenvolvimento da interface gráfica do jogo, veja seu [guia de uso](https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/) para mais informações.
+The **ncurses** library was used to develop the game's graphical interface. See its [usage guide](https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/) for more information.
 
-### Como instalar ncurses:
+### How to Install ncurses
 
-> É recomendado tentar executar o programa (exemplificado na seção **Como executar**) para verificar se **ncurses** já está instalada. Um aviso do terminal em conjunto com instruções para instalá-la, específicas ao seus sistema, deve aparecer caso não esteja. Você pode também prosseguir com os comandos a seguir
+> It is recommended to try running the program (as explained in the **How to Run** section) to check if **ncurses** is already installed. A terminal message along with instructions for installing it, specific to your system, should appear if it is not. You can also proceed with the following commands:
 
-Em sistemas baseados em Debian (como o Ubuntu):
+On Debian-based systems (like Ubuntu):
 
 ```sh
 sudo apt-get install libncurses5-dev libncursesw5-dev
 ```
 
-Em sistemas baseados em Red Hat (como o Fedora):
+On Red Hat-based systems (like Fedora):
 
 ```sh
 sudo dnf install ncurses-devel
 ```
 
-## Como executar
+## How to Run
 
-Para rodar o jogo, deve-se executar as instruções :
+To run the game, execute the following instructions:
+
 ```sh
-make all # Compilar arquivos e gerar executável
-make run # Executar jogo
-ou
+make all # Compile files and generate executable
+make run # Run the game
+or
 make all run
 ```
 
-Caso alguma mudança seja feita nos arquivos do jogo, como mudar a dificuldade ou tamanho da arena (mencionado na seção **Como personalizar**), é necessário recompilar o programa.
+If any changes are made to the game files, such as changing the difficulty or arena size (mentioned in the **How to Customize** section), the program needs to be recompiled.
 
 ```sh
-make clean # Excluir arquivos gerados
-make all run # Recompilar e executar
-ou 
+make clean # Delete generated files
+make all run # Recompile and run
+or 
 make clean all run
 ```
-## Como jogar
 
-**Menu** é controlado pelas **arrow keys** : <kbd>↑</kbd> <kbd>↓</kbd> <br>
-**Player 1** controla a raquete da esquerda com <kbd>w</kbd> <kbd>s</kbd> <br>
-**Player 2** controla a raquete da direita com <kbd>↑</kbd> <kbd>↓</kbd> 
+## How to Play
 
-**No más, jogue PONG !!!**
+**Menu** is controlled by the **arrow keys**: <kbd>↑</kbd> <kbd>↓</kbd> <br>
+**Player 1** controls the left paddle with <kbd>w</kbd> <kbd>s</kbd> <br>
+**Player 2** controls the right paddle with <kbd>↑</kbd> <kbd>↓</kbd> 
 
-## Como personalizar
+**No more, play PONG!!!**
 
-É possível alterar a dificuldade do jogo descomentando e comentando as partes necessárias no arquivo **menu.h**.
+## How to Customize
+
+You can change the game's difficulty by uncommenting and commenting the necessary parts in the **menu.h** file.
 <br><br>
-É possível criar configurações personalizadas alterando como desejar as definições: **SPEED TAM_X TAM_Y TAM_RAQUETE** , porém se atente aos valores fornecidos, bugs podem ser gerados caso haja inconsistências.
+You can create custom configurations by altering the definitions: **SPEED TAM_X TAM_Y TAM_RAQUETE** as you wish, but be aware of the values provided, as inconsistencies can cause bugs.
 
-## Descrições dos semáforos e threads utilizados
+## Descriptions of Semaphores and Threads Used
 
 ### Threads
 
-No total, foram implementadas **três threads** para melhorar a eficiência e a responsividade do jogo. 
+In total, **three threads** were implemented to improve the game's efficiency and responsiveness.
 
-Duas dessas threads são dedicadas ao controle das raquetes, uma para a raquete do player 1 e outra para a raquete do player 2. A terceira thread é responsável pelo movimento da bola. 
+Two of these threads are dedicated to controlling the paddles, one for player 1's paddle and the other for player 2's paddle. The third thread is responsible for the ball's movement.
 
-A razão para essa abordagem é que as operações envolvendo as raquetes e a bola são independentes entre si e podem ocorrer simultaneamente, otimizando assim o desempenho do jogo.
+The reason for this approach is that the operations involving the paddles and the ball are independent of each other and can occur simultaneously, thus optimizing the game's performance.
 
-Código desenvolvido em **logic.c**:
+Code developed in **logic.c**:
+
 ```c
 pthread_t p, q, r;
 pthread_create(&p, NULL, move_raquete_wrapper, (void *)(setup->jogadores[0]));
 pthread_create(&q, NULL, move_raquete_wrapper, (void *)(setup->jogadores[1]));
 pthread_create(&r, NULL, move_ball_wrapper, (void *)(setup));
 ```
-### Semáforos
 
-Os semáforos foram utilizados para controlar a ação de atualizar a tela, ou seja, após qualquer um dos 3 objetos presentes no jogo - primeira raquete, segunda raquete e bola - se moverem, a tela precisa ser atualizada para que o movimento seja percebido pelos jogadores. 
+### Semaphores
 
-Essa ação é realizada pela seguinte função presente na biblioteca ncurses: 
+Semaphores were used to control the screen update action. That is, after any of the 3 objects in the game - first paddle, second paddle, and ball - move, the screen needs to be updated so that the movement is perceived by the players.
+
+This action is performed by the following function present in the ncurses library:
 
 ```c++
 wrefresh(window);
 ```
 
-Após a incorporação de mutexes, o código ficou da seguinte forma:
+After incorporating mutexes, the code looks like this:
 
 ```c++
 pthread_mutex_lock(&mutex);
@@ -106,24 +112,22 @@ wrefresh(window);
 pthread_mutex_unlock(&mutex);
 ```
 
-Dessa forma, condições de corrida, antes presentes e que poderiam ocasionar glitches de interface, são mitigadas pelo uso dos semáforos. 
+This way, race conditions, which could cause interface glitches, are mitigated by using semaphores.
 
-Assista ao vídeo abaixo para visualizar como se apresentam os possíveis glitches e como são evitados.
-
-## Vídeo de apresentação
-
-https://drive.google.com/file/d/1YN7HlkowLsuxFQAXJqA2Nh64CA3YqfjQ/view?usp=sharing
-
-## Imagens do jogo
+## Game Images
 
 ### Menu
+
 ![Menu](Images/Menu.png)
 
 ### Start
+
 ![Start](Images/Start.png)
 
 ### Play
+
 ![Play](Images/Play.png)
 
 ### End
+
 ![End](Images/End.png)
