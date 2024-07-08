@@ -1,12 +1,5 @@
 # [Pong Game](https://github.com/GustavoZiel/Pong-Game)
 
-Developed by:
-
-- Gustavo Gabriel Ribeiro - 13672683
-- Artur De Vlieger Lima - 13671574
-- João Pedro Soares de Azevedo Calixto - 13732011
-- Lucas de Souza Brandão - 13695021
-
 ## How to Install
 
 The game was entirely developed in C, without using any resources from other languages. It uses the following libraries:
